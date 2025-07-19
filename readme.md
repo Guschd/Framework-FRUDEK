@@ -22,6 +22,7 @@ Verwendete Testumgebung OpenAI - ChatGPT 4.0 für Kontextuierung, Prompts und di
 | M11 | Qualitätsklassen & Verwendungsziele | Einstufung von Inhalt nach Reifegrad und Zielsetzung |
 | M12 | Automatisierte Validierung & Ableitung | Regelprüfung, Snippet-Analyse & Metadatenprüfung |
 | M13 | Visualmodul für Reuse-Prozesse | Darstellung von Reuse-Flüssen und Lizenzpfaden |
+| M14 | API-Logik & Exportstruktur | Aufbau von API-Schnittstellen und Exportformaten für Snippets |
 
 ---
 
