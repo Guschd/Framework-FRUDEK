@@ -1,6 +1,7 @@
 # FRUDEK – Framework zur Reuse-Dokumentation und Kreativarbeit
 
 FRUDEK ist ein modulares Framework zur **strukturierten, transparenten und wiederverwendbaren Dokumentation von kreativen KI-gestützten Projekten**. Es ermöglicht die systematische Erfassung von Snippets, Modellen, Abläufen, Reuse-Ebenen und Lizenzen.
+Verwendete Testumgebung OpenAI - ChatGPT 4.0 für Kontextuierung, Prompts und die dahinterliebenden Plugins. Weitere KI Systeme folgen.
 
 ---
 
