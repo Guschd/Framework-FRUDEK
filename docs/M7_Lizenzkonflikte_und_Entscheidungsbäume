@@ -1,0 +1,133 @@
+# M7 – Lizenzkonflikte & Entscheidungsbäume
+
+## 🧭 Ziel
+
+M7 behandelt typische **Lizenzüberschneidungen und Konfliktfälle**, die beim Kombinieren, Verändern oder Weiterverwerten von Inhalten im Rahmen von FRUDEK auftreten können. Es stellt einfache **Entscheidungsbäume**, **Fallback-Strategien** und **Empfehlungen zur Attribution** bereit.
+
+Ziel ist ein rechtlich sicheres, transparent dokumentiertes Vorgehen beim Umgang mit mehrdeutigen oder inkompatiblen Lizenzbedingungen.
+
+---
+
+## ⚖️ Typische Konfliktarten
+
+| Konflikttyp | Beschreibung | Beispiel |
+|-------------|--------------|----------|
+| 🔃 **Kombinierte Inhalte mit unterschiedlicher Lizenz** | Zwei Dateien (z. B. Code + Grafik) unterliegen unterschiedlichen Freigaberegeln | GPL-Skript + CC-NC-Bild |
+| 📦 **Abgeleitete Werke mit restriktiver Ursprungslizenz** | Weiterverarbeitung erlaubt, aber nur unter gleichen Bedingungen | Verwendung eines CC-BY-SA Fragments |
+| 💼 **Kommerzielle vs. nicht-kommerzielle Nutzung** | Ausgangsmaterial erlaubt keine gewerbliche Verwertung | CC BY-NC + kommerzielles Repo |
+| 🧷 **Fehlende Lizenzkennzeichnung** | Datei wurde verwendet, aber ohne klare Lizenzmetadaten | alter Markdown-Schnipsel ohne Kopfzeile |
+| 🔐 **Interne Inhalte in öffentlichen Kontexten** | Modul wurde als intern markiert, taucht aber später in einer Doku auf | R0-Dateien im Beispielarchiv |
+
+---
+
+## 🌲 Entscheidungsbaum (vereinfachte Logik)
+
+```text
+                         ┌──────────────┐
+                         │ Inhalt liegt │
+                         │  extern vor? │
+                         └─────┬────────┘
+                               │
+                     ┌─────────▼─────────┐
+                     │ Lizenz vorhanden?│
+                     └─────┬─────────────┘
+                           │
+                 ┌─────────▼─────────┐
+                 │ Lizenzen kombinierbar?│
+                 └─────┬─────────────┘
+                       │
+             ┌─────────▼──────────┐
+             │ Attribution möglich?│
+             └─────┬──────────────┘
+                   │
+     ┌─────────────▼─────────────┐
+     │ → Reuse-Typ auf R1 setzen │
+     │ → Quellennachweis ergänzen│
+     └───────────────────────────┘
+```
+
+---
+
+## 🛠️ Maßnahmen bei Konflikten
+
+| Problem | Empfehlung | Tool/Modul |
+|--------|-------------|-------------|
+| Lizenz fehlt | Rückfrage / Standardhinweis „Lizenz unbekannt“ | M6 |
+| CC-NC in öffentlichem Repo | Markieren als „nur privat nutzbar“, keine Automatisierung | M10 |
+| GPL + inkompatible Datei | Modul isolieren oder nicht veröffentlichen | M3 / M9 |
+| Widersprüchliche YAML-Tags | Immer restriktivste Variante anwenden | M5 |
+| Urheber unklar | Mit Ursprungsprojekt verlinken und als "unsicher" kennzeichnen | M9 |
+
+---
+
+## ✅ Best Practices
+
+- 📎 Verwende stets **einen Lizenzblock in jedem Snippet oder Modul**  
+- 🧩 Bei kombinierter Nutzung gelten **restriktivste Bedingungen als Standard**  
+- 📂 Isoliere problematische Dateien in einen eigenen Ordner („/unsicher“)  
+- 🛡️ Automatisierte Nutzung (R2–R3) nur bei eindeutiger Freigabe  
+- 🖊️ Attribution lieber zu oft als zu wenig  
+- 🔄 Konfliktfälle dokumentieren – FRUDEK erlaubt es, pro Snippet Konflikthinweise zu erfassen
+
+---
+
+## 🧩 Beispiel für Konfliktdokumentation
+
+```markdown
+---
+license: unbekannt  
+reuse: R1  
+note: "Inhalt übernommen aus älterem Projekt ohne vollständige Lizenzinformationen. Nutzung nur nach Prüfung."  
+source: https://altprojekt.org/fragement/xyz
+---
+```
+
+```markdown
+---
+license: CC BY 4.0  
+reuse: R2  
+conflict: true  
+conflict_reason: "Teilweise Überschneidung mit GPL-Code – Nutzung nur mit separater Attribution"  
+---
+```
+
+---
+
+## 💬 Prompts zur Konfliktbewertung
+
+**Prompt: Einschätzung kombinierter Lizenzverwendung**
+```
+Gibt es einen Lizenzkonflikt bei gleichzeitiger Nutzung von CC BY-SA Inhalten mit GPL v3 Code?
+Wenn ja, wie kann dieser durch separate Attribution gelöst werden?
+```
+
+**Prompt: Entscheidungshilfe bei nicht gekennzeichnetem Snippet**
+```
+Dieses Snippet enthält keine Lizenzinformationen. Empfohlene Vorgehensweise?
+→ Antwort: R1 setzen, nicht automatisieren, Attribution ergänzen.
+```
+
+**Prompt: YAML-Validierung auf Konflikte**
+```yaml
+license: CC BY-NC 4.0
+reuse: R3
+source: Altprojekt 2023
+conflict_check: true
+conflict_reason: "ursprünglich nicht-kommerzielle Freigabe"
+```
+
+---
+
+## 🔗 Verknüpfung zu anderen Modulen
+
+- basiert auf:  
+  → M6 – Lizenzlogik  
+  → M5 – YAML-Metadaten  
+  → M3 – Dokumentationstypen
+
+- wird verwendet in:  
+  → M9 – Transparente Attribution  
+  → M10 – Freigabeverwaltung  
+  → M4 – Revisionshistorien
+
+---
